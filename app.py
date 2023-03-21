@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 from flask import send_file
 import os
-
 import shutil
 
 app = Flask(__name__)
@@ -16,14 +15,14 @@ def create():
         url=request.form.get("search")
         if url[:23] == "https://3asq.org/manga/":
             r = requests.get(url)
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
+            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"static/manga",""))):
+                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip"))):
                 os.remove(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip")))
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
                 shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
-            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
-            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
+            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
+            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             soup = BeautifulSoup(r.text, 'html.parser')
             images = soup.find_all('img')
             
@@ -42,18 +41,18 @@ def create():
             namee=namee.replace(' ', '_')
             session['my_var'] = namee
             name=session['my_var']
-            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))                        
+            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))                        
             return redirect(url_for('downloadFile'))
         elif url[:38] == "https://onepiecechapters.com/chapters/":
             r = requests.get(url)
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
+            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"static/manga",""))):
+                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip"))):
                 os.remove(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip")))
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
                 shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
-            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
-            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))
+            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
+            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             soup = BeautifulSoup(r.text, 'html.parser')
             images = soup.find_all('img')
             
@@ -74,7 +73,7 @@ def create():
             session['my_var'] = namee
             name=session['my_var']
             
-            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"tmp/manga","")))                            
+            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))                            
             return redirect(url_for('downloadFile'))
         
         
