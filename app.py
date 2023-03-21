@@ -15,12 +15,6 @@ def create():
         url=request.form.get("search")
         if url[:23] == "https://3asq.org/manga/":
             r = requests.get(url)
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"static/manga",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip"))):
-                os.remove(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip")))
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
             os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             os.chdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             soup = BeautifulSoup(r.text, 'html.parser')
@@ -45,12 +39,6 @@ def create():
             return redirect(url_for('downloadFile'))
         elif url[:38] == "https://onepiecechapters.com/chapters/":
             r = requests.get(url)
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"static/manga",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip"))):
-                os.remove(os.path.abspath(os.path.join(os.getcwd(),"chapter.zip")))
-            if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
             os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             os.chdir(os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))
             soup = BeautifulSoup(r.text, 'html.parser')
