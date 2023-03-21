@@ -1,4 +1,3 @@
-
 from flask import Flask, redirect, url_for ,render_template,request,session
 import requests
 import requests
@@ -77,7 +76,8 @@ def create():
             
             shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"static/manga","")))                            
             return redirect(url_for('downloadFile'))
-
+        
+        
         else:
             return("invalid chapter link")    
          
