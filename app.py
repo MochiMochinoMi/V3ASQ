@@ -16,9 +16,9 @@ def create():
         if url[:23] == "https://3asq.org/manga/":
             r = requests.get(url)
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"tmp",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
+                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"tmp","")),ignore_errors=True)
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
-                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
+                shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")),ignore_errors=True)
             os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
             os.chdir(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
             soup = BeautifulSoup(r.text, 'html.parser')
