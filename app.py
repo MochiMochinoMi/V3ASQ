@@ -19,8 +19,8 @@ def create():
                 shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
             if os.path.exists(os.path.abspath(os.path.join(os.getcwd(),"chap",""))):
                 shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(),"chap","")))
-            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"Manga","")))
-            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"Manga","")))
+            os.mkdir(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
+            os.chdir(os.path.abspath(os.path.join(os.getcwd(),"tmp","")))
             soup = BeautifulSoup(r.text, 'html.parser')
             images = soup.find_all('img')
             
@@ -38,7 +38,7 @@ def create():
             namee=namee.replace(' ', '_')
             session['my_var'] = namee
             name=session['my_var']
-            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"Manga","")))                        
+            shutil.make_archive("chap/"+name, 'zip', os.path.abspath(os.path.join(os.getcwd(),"tmp","")))                        
             return redirect(url_for('downloadFile'))
         elif url[:38] == "https://onepiecechapters.com/chapters/":
             r = requests.get(url)
